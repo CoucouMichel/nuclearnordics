@@ -1,7 +1,4 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-   {
   "type": "FeatureCollection", 
   "features": [
     {
@@ -18843,8 +18840,8 @@
       "id": 1
     }
   ]
-},
-   {
+}
+{
   "type": "FeatureCollection", 
   "features": [
     {
@@ -66467,7 +66464,7 @@
     }
   ]
 },
-    {
+{
   "type": "FeatureCollection", 
   "features": [
     {
