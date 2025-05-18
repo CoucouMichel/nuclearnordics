@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuclear Projects in Scandinavia & Estonia</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+    <style>
+        /* Set the size of the map */
+        #map {
+            height: 90vh; /* 90% of the viewport height */
+            width: 100%;
+        }
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .leaflet-popup-content-wrapper {
+            border-radius: 5px;
+        }
+        .leaflet-popup-content {
+            margin: 10px !important;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .leaflet-popup-content h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ongoing Nuclear Projects</h1>
+    <div id="map"></div>
+
+    <script>
+        // 1. Initialize the map
+        // Centered roughly on Scandinavia
+        const map = L.map('map').setView([62, 18], 4); // Latitude, Longitude, Zoom level
+
+        // 2. Add a tile layer (basemap)
+        // Using OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 3. Define your nuclear project data
+        // Add all your projects here!
+        const nuclearProjects = [
+            {
+              name: "Onkalo Spent Fuel Repository",
+              country: "Finland",
+              locationName: "Olkiluoto, Eurajoki",
+              lat: 61.236,
+              lng: 21.488,
+              type: "Waste Repository",
+              status: "Preparing for operation",
+              description: "World's first deep geological repository for spent nuclear fuel."
+            },
+            {
+              name: "Loviisa NPP Life Extension",
+              country: "Finland",
+              locationName: "Loviisa",
+              lat: 60.372,
+              lng: 26.355,
+              type: "Life Extension",
+              status: "Licenses to 2050",
+              description: "Modernization and life extension of two VVER-440 reactors."
+            },
+            {
+              name: "Swedish Govt. Plan for New Reactors",
+              country: "Sweden",
+              locationName: "Potential site: Forsmark",
+              lat: 60.403,
+              lng: 18.174,
+              type: "New Build Policy",
+              status: "Planning (2 large by 2035, 10 total by 2045)",
+              description: "National plan for significant new nuclear capacity."
+            },
+            {
+              name: "Halden SMR Project Study",
+              country: "Norway",
+              locationName: "Halden",
+              lat: 59.129,
+              lng: 11.392,
+              type: "SMR Study",
+              status: "Early planning, land acquisition intent",
+              description: "Study for a potential SMR plant up to 1200 MWe."
+            },
+            {
+              name: "Saltfoss Energy CMSR Development",
+              country: "Denmark",
+              locationName: "Development in Copenhagen (floating)",
+              lat: 55.676, // Copenhagen
+              lng: 12.568, // Copenhagen
+              type: "SMR Development (Floating)",
+              status: "Ongoing R&D, partnerships",
+              description: "Developing Compact Molten Salt Reactors for floating barges."
+            },
+            {
+              name: "Fermi Energia SMR Project",
+              country: "Estonia",
+              locationName: "Potential: Kunda area (Viru-Nigula)",
+              lat: 59.50,
+              lng: 26.53,
+              type: "New Build SMR",
+              status: "Planning, site selection (2x BWRX-300 by ~2035-2037)",
+              description: "Plan to build two GEH BWRX-300 SMRs."
+            }
+            // ... Add more projects from the list provided previously
+        ];
+
+        // 4. Add markers to the map
+        nuclearProjects.forEach(project => {
+            const marker = L.marker([project.lat, project.lng]).addTo(map);
+
+            // Create popup content
+            let popupContent = `<h3>${project.name}</h3>`;
+            popupContent += `<b>Country:</b> ${project.country}<br>`;
+            popupContent += `<b>Location:</b> ${project.locationName}<br>`;
+            popupContent += `<b>Type:</b> ${project.type}<br>`;
+            popupContent += `<b>Status:</b> ${project.status}<br>`;
+            if (project.description) {
+                popupContent += `<p>${project.description}</p>`;
+            }
+
+            marker.bindPopup(popupContent);
+        });
+
+        // Optional: Add a legend or more complex styling later
+
+    </script>
+
+</body>
+</html>
